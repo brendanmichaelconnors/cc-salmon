@@ -33,7 +33,7 @@ er_data <- er_data_pse %>%
   summarise(avg_er = mean(datavalue)) %>%
   select(species, year,avg_er)
 
-ggplot(er_data, aes( y = avg_er*100, x = year)) +
+ggplot(er_data %>% filter(year<2017), aes( y = avg_er*100, x = year)) +
   geom_line(size=1.5, color="grey") +
   labs(x = "Year", y = "Harvest rate (%)") +
   facet_wrap(~species) +
@@ -68,4 +68,4 @@ ggplot(data_resid%>%filter(species != "River sockeye", year<2012), aes( y = smoo
   facet_wrap(~species) +
   theme_sleek() 
 
-ggsave("figs/all-prod-10_avg.jpeg", width = 7, height = 4, units = "in")
+ggsave("figs/all-prod-10_avg.jpeg", width = 8, height = 4.6, units = "in")
